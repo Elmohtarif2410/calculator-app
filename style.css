@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-family: sans-serif, Arial, Tahoma;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.th-1 {
+    --main-background: #3a4764;
+    --toggle-background: #232c43;
+    --screen-background: #182034;
+
+    --key-background: #637097;
+    --key-shadow: #404e72;
+    --red-key-background: #d03f2f;
+    --dark-red: #93261a;
+    --light-grayish-orange: #eae3dc;
+    --grayish-orange: #b4a597;
+
+    --white: #ffffff;
+    --very-dark-grayish-blue: #eae3dc;
+}
+
+body.th-2 {
+    --main-background: #e6e6e6;
+    --toggle-background: #d1cccc;
+    --screen-background: #ededed;
+
+    --key-background: #377f86;
+    --key-shadow: #1b5f65;
+    --red-key-background: #ca5502;
+    --dark-red: #893901;
+    --light-grayish-orange: #e5e4e1;
+    --grayish-orange: #a69d91;
+
+    --white: #ffffff;
+    --very-dark-grayish-blue: #35352c;
+}
+
+body.th-3 {
+    --main-background: #160628;
+    --toggle-background: #1d0934;
+    --screen-background: #1d0934;
+
+    --key-background: #58077d;
+    --key-shadow: #bc15f4;
+    --red-key-background: #00e0d1;
+    --dark-red: #6cf9f2;
+    --light-grayish-orange: #341c4f;
+    --grayish-orange: #871c9c;
+
+    --white: #ffffff;
+    --very-dark-grayish-blue: #ffe53d;
+}
+
+    /* Start style */
+
+    /* Header */
+body {
+    background-color: var(--main-background);
+}
+
+.container {
+    width: 375px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header h2 {
+    font-size: 26px;
+    color: var(--very-dark-grayish-blue)
+}
+
+header section {
+    display: flex;
+    align-items: center;
+}
+
+header section span {
+    text-transform: uppercase;
+    color: var(--very-dark-grayish-blue);
+    font-size: 10px;
+    margin-right: 10px;
+}
+
+header section ul {
+    list-style: none;
+    display: flex;
+    background: var(--toggle-background);
+    padding: 4px;
+    border-radius: 12px;
+}
+
+header section ul li {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--red-key-background);
+    /* opacity: 0; */
+    cursor: pointer;
+    position: relative;
+    counter-increment: number;
+    visibility: hidden;
+}
+
+header section ul li::after {
+    content: counter(number);
+    position: absolute;
+    top: -15px;
+    color: var(--very-dark-grayish-blue);
+    font-size: 10px;;
+    visibility: visible;
+}
+
+header section ul li.active,
+header section ul li:hover {visibility: visible;}
+
+    /* output */
+.output {
+    background: var(--screen-background);
+    color: var(--very-dark-grayish-blue);
+    padding: 20px;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: right;
+    margin: 25px 0;
+    border-radius: 12px;
+}
+
+    /* body calc */
+article {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px;
+    gap: 12px;
+    background-color: var(--toggle-background);
+    border-radius: 12px
+}
+
+article button {
+    cursor: pointer;
+    font-size: 32px;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+    box-shadow: 0px -3px var(--grayish-orange) inset;
+    color: var(--very-dark-grayish-blue);
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--light-grayish-orange)
+}
+
+article button:nth-child(4) {
+    font-size: 16px;
+    background-color: var(--key-background);
+    box-shadow: 0px -3px var(--key-shadow) inset;
+    color: var(--white);
+}
+
+article button:nth-last-child(2) {
+    font-size: 16px;
+    background-color: var(--key-background);
+    box-shadow: 0px -3px var(--key-shadow) inset;
+    color: var(--white);
+    grid-area: 5 / 1 / 6 / 3;
+    padding: 10px 0
+}
+
+article button:last-child {
+    font-size: 16px;
+    background-color: var(--red-key-background);
+    box-shadow: 0px -3px var(--dark-red) inset;
+    color: var(--white);
+    grid-area: 5 / 3 / 6 / 5;
+    padding: 10px 0
+}
+
+    /* theme two  */
+
+.th-1 article button:not(:nth-child(4), :nth-last-child(2), :last-child ) {color: var(--key-shadow)}
+
+/* .th-3 article button:not(:nth-child(4), :nth-last-child(2), :last-child ) {background-color: var(--key-shadow)} */
+
+/* .th-2 h2,
+.th-2 span,
+.th-2 .output {
+    color: var(--very-dark-grayish-blue)
+}     */
+
