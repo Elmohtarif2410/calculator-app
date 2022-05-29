@@ -57,13 +57,9 @@ let NumbersButton = document.querySelectorAll("button"),
     screen = document.querySelector(".output");
 
 // add buttons Number to Array 
-for (let i = 0; i < NumbersButton.length; i++) {
-    if (NumbersButton[i].value === "") {
-        continue;
-    }  
-
-    NumbersButtonArray.unshift(NumbersButton[i]);
-}
+NumbersButtonArray = Object.values(NumbersButton).filter(function (element) {
+    return !isNaN(parseInt(element.textContent));
+});
 
 // Buttons Number on click
 for (let i = 0; i < NumbersButtonArray.length; i++) {
@@ -110,36 +106,65 @@ sub.onclick = function () {
     }
 }
 
+// multiplication button click
+mult.onclick = function () {
+    // screen and oprator rest to multiplication
+    screen.textContent = "*";
+    oprator = "mult";
+    // rest screen value and output
+    for (let i = 0; i < NumbersButtonArray.length; i++) {
+        // when click to Number buttons
+        NumbersButtonArray[i].onclick = function () {
+            // change value output two
+            outputTwo += this.value;
+            //screen whathed secound output
+            screen.textContent = outputTwo;
+        }
+    }
+}
+
+// division button click
+div.onclick = function () {
+    // screen and oprator rest to division
+    screen.textContent = "/";
+    oprator = "div";
+    // rest screen value and output
+    for (let i = 0; i < NumbersButtonArray.length; i++) {
+        // when click to Number buttons
+        NumbersButtonArray[i].onclick = function () {
+            // change value output two
+            outputTwo += this.value;
+            //screen whathed secound output
+            screen.textContent = outputTwo;
+        }
+    }
+}
+
 // function button equal
 equal.onclick = function () {
     // condition to Calculation 
-
     switch (oprator) {
-        case "add": // subtraction Calculation
+        case "add": // addition Calculation
             mainOutput = +outputOne + +outputTwo;
             break;
-        case "sub": // addition Calculation
-          mainOutput = +outputOne - +outputTwo;
-          break;
+        case "sub": // subtraction Calculation
+            mainOutput = +outputOne - +outputTwo;
+            break;
+        case "mult": // multiplication Calculation
+            mainOutput = +outputOne * +outputTwo;
+            break;
+        case "div": // division Calculation
+            mainOutput = +outputOne / +outputTwo;
+            break;
         default: 
             mainOutput = 0;
     }
     //screen whathed finsh output
     screen.textContent = mainOutput;
     // reset values output varibles
-    outputOne = "";
+    outputOne = mainOutput;
     outputTwo = "";
 }
-
-
-
-
-
-
-
-console.log(NumbersButtonArray[0]);
-console.log(outputOne);
-console.log(screen);
 
 
 
