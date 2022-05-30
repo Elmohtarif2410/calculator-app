@@ -24,25 +24,48 @@ function taggleTheme(active, remove1, remove2) {
 
 buttonsTaggleTheme[0].onclick = function () {
     // function => active button on click and remove active all buttons
-    taggleButton(0, 1, 2);
+    //taggleButton(0, 1, 2);
     // function : remove all classes themes to body and add theme button here
-    taggleTheme(0, 1, 2);
+    //taggleTheme(0, 1, 2);
     // remove all classes body 
 }
 
 buttonsTaggleTheme[1].onclick = function () {
     // function => active button on click and remove active all button 
-    taggleButton(1, 0, 2);
+    //taggleButton(1, 0, 2);
     // function : remove all classes themes to body and add theme button here
-    taggleTheme(1, 0, 2);
+    //taggleTheme(1, 0, 2);
 }
 
 buttonsTaggleTheme[2].onclick = function () {
     // function => active button on click and remove active all button
-    taggleButton(2, 0, 1);
+    //taggleButton(2, 0, 1);
     // function : remove all classes themes to body and add theme button here
-    taggleTheme(2, 0, 1);
+    //taggleTheme(2, 0, 1);
 }
+
+// tested 
+buttonsTaggleTheme.forEach(function (el, index) {
+
+
+    el.onclick = function () { 
+        // remove active to  all buttons
+        buttonsTaggleTheme.forEach(function(els) {
+            els.style.visibility = "hidden";
+        })
+        // active to button whith click her
+        el.style.visibility = "visible";
+    
+
+        // remove all classes body 
+        themesBody.forEach(function (th) {
+            body.classList.remove(th);      
+        })
+        // Add class this theme buttons to body
+        body.classList.add(themesBody[index]);
+    }
+});
+
 
 /* ##########################################################################
 ######################### Functionalty Calculation  #########################
@@ -72,6 +95,7 @@ for (let i = 0; i < NumbersButtonArray.length; i++) {
     }
 }
 
+            //################ calulator buttons ####################
 // addition button click
 add.onclick = function () {
     // screen and oprator rest to addition
@@ -140,6 +164,70 @@ div.onclick = function () {
     }
 }
 
+                //############# action buttons ###################
+// reset button click
+reset.onclick = function () {
+    // reset output varible
+    outputOne = ""; 
+    outputTwo = "";
+    mainOutput = 0;
+    // rest screen => whach zero (0)
+    screen.textContent = mainOutput;
+    // rest buttons Number onclick
+    for (let i = 0; i < NumbersButtonArray.length; i++) {
+        // when click to Number buttons
+        NumbersButtonArray[i].onclick = function () {
+            // change value output one
+            outputOne += this.value;
+            //screen whathed frist output
+            screen.textContent = outputOne;
+        }
+    }
+}
+
+// delet button on click
+del.onclick = function () {
+    // check screen whach => outOne  or  outTwo
+    if (outputTwo !== "") { // screen whach => outTwo
+        // convert outTwo in string to Arry
+        outputTwo = outputTwo.split("");
+        // check outTwo length > 1
+        if (outputTwo.length > 1) { // if outTwo length > 1 
+            // delet last item writing
+            outputTwo.pop();
+            // convert outTwo in Array to String
+            outputTwo = outputTwo.join("");
+            // whach to screen new value 
+            screen.textContent = outputTwo; 
+        // Else : outTwo length = 1 
+        } else {
+            // reset value to outTwo
+            outputTwo = "";
+            // screen whach it zero
+            screen.textContent = "0"
+        }
+    // screen whach => outOne 
+    } else {
+        // convert outputOne in string to Arry
+        outputOne = outputOne.split("");
+        // check outputOne length > 1
+        if (outputOne.length > 1) { // if outputOne length > 1 
+            // delet last item writing
+            outputOne.pop();
+            // convert outputOne in Array to String
+            outputOne = outputOne.join("");
+            // whach to screen new value 
+            screen.textContent = outputOne; 
+        // Else : outputOne length = 1     
+        } else {
+            // reset value to outputOne
+            outputOne = "";
+            // screen whach it zero
+            screen.textContent = "0"
+        }
+    }
+}
+
 // function button equal
 equal.onclick = function () {
     // condition to Calculation 
@@ -165,6 +253,3 @@ equal.onclick = function () {
     outputOne = mainOutput;
     outputTwo = "";
 }
-
-
-
